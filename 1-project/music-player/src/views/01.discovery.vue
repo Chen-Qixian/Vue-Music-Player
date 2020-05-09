@@ -2,7 +2,7 @@
   <div class="discovery-container">
     <!-- 轮播图 -->
     <el-carousel class="" :interval="4000" type="card">
-      <el-carousel-item v-for="item in 6" >
+      <el-carousel-item v-for="item in 6" :key="item">
         <img src="../assets/banner.jpg" alt="" />
       </el-carousel-item>
     </el-carousel>

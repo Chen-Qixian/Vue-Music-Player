@@ -42,7 +42,7 @@ export default {
   name: 'index',
   data() {
     return {
-      musicUrl:"http://m7.music.126.net/20200303182550/8aa5971b1630d1527a922ccd2b97f392/ymusic/035d/0109/520e/478f86cc9f6c6539f7c8ed3e06c1bf8e.mp3"
+      musicUrl:"http://m8.music.126.net/20200509110107/7d89bf5c7814d68f160accbf5414895c/ymusic/e5ca/c7b5/928e/5bd0e125e8c7b6212a6d8c576caf4dd0.mp3"
     };
   }
 };

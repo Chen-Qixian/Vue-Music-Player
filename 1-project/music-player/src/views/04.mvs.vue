@@ -63,7 +63,7 @@
     <!-- 推荐MV -->
     <div class="mvs">
       <div class="items">
-        <div class="item" @click="toMv(10)">
+        <div class="item">
           <div class="img-wrap">
             <img src="../assets/mvCover.jpg" alt="" />
             <div class="num-wrap">
@@ -171,9 +171,7 @@ export default {
     };
   },
   methods: {
-    toMv(id) {
-      this.$router.push(`/mv?id=${id}`);
-    },
+    
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
     }
