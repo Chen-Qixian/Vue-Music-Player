@@ -980,7 +980,7 @@ ol {
 }
 
 .playlists-container .tab-container .tab-content .items .item {
-  width: 200px;
+  width: 180px;
   margin: 10px;
   position: relative;
   overflow: hidden;
@@ -988,8 +988,8 @@ ol {
 }
 
 .playlists-container .tab-container .tab-content .items .item img {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 5px;
 }
 
