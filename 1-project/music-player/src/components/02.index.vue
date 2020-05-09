@@ -32,7 +32,7 @@
       <router-view></router-view>
     </div>
     <div class="player">
-      <audio :src='musicUrl' controls></audio>
+      <audio :src='musicUrl' autoplay controls></audio>
     </div>
   </div>
 </template>

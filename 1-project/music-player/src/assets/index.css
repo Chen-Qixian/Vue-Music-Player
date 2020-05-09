@@ -4,7 +4,8 @@ html {
   margin: 0;
   padding: 0;
   font-weight: 400;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, '\5FAE\8F6F\96C5\9ED1', Arial, sans-serif;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+ Microsoft YaHei, '\5FAE\8F6F\96C5\9ED1', Arial, sans-serif;
 }
 
 * {
@@ -172,15 +173,15 @@ ol {
 }
 
 .discovery-container .recommend .items .item {
-  width: 200px;
+  width: 180px;
   margin: 10px;
   position: relative;
   overflow: hidden;
 }
 
 .discovery-container .recommend .items .item img {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 5px;
 }
 
