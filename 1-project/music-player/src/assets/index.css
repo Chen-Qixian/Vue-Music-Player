@@ -1374,6 +1374,10 @@ ol {
   align-items: center;
 }
 
+#pane-songs .el-table tbody .el-table__row {
+  cursor: pointer
+}
+
 #app {
   height: 100%;
 }

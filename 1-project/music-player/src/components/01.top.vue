@@ -18,9 +18,11 @@
           autocomplete="off"
           placeholder="搜索"
           class="el-input__inner"
+          v-model="inputVal"
+          @keyup.enter="toResult"
         />
         <span class="el-input__prefix">
-          <i class="el-input__icon el-icon-search"></i>
+          <i class="el-input__icon el-icon-search" @click="toResult"></i>
         </span>
       </div>
     </div>
@@ -32,7 +34,19 @@
     name: 'top',
     data() {
       return {
-        query: ''
+        inputVal: ''
+      }
+    },
+    methods: {
+      toResult() {
+        let val = this.inputVal.trim()
+        if (val) {
+          this.$router.push(`/result?q=${val}`)
+          this.inputVal = ''
+        }
+        else {
+          this.$message.warning('请输入内容')
+        }
       }
     }
   }

@@ -87,7 +87,7 @@
         layout="prev, pager, next"
         :total="total"
         :current-page="page"
-        :page-size="5"
+        :page-size="8"
         :limit="limit"
       >
       </el-pagination>
