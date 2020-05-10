@@ -51,7 +51,12 @@
       </el-tab-pane>
       <el-tab-pane label="歌单" name="lists">
         <div class="items">
-          <div class="item" v-for="(item, index) in playList" :key="index">
+          <div 
+            class="item" 
+            v-for="(item, index) in playList" 
+            :key="index"
+            @click="toPlayList(item.id)"
+          >
             <div class="img-wrap">
               <div class="num-wrap">
                 播放量:
@@ -226,6 +231,9 @@ export default {
     handleCurrentChange(val) {
       this.page = val
       this.getList()
+    },
+    toPlayList(id) {
+      this.$router.push(`/playlist?id=${id}`)
     }
   },
   created() {
