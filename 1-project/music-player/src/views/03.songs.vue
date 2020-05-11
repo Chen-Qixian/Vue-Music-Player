@@ -30,7 +30,7 @@
             <div class="song-wrap">
               <div class="name-wrap">
                 <span>{{ item.name }}</span>
-                <span class="iconfont icon-mv"></span>
+                <span class="iconfont icon-mv" v-if="item.mvid != 0" @click="toMv(item.mvid)"></span>
               </div>
               <span>{{ item.album.name }}</span>
             </div>
@@ -67,7 +67,8 @@ export default {
         url: `https://autumnfish.cn/top/song`,
         method: 'get',
         params: {
-          type: this.tag
+          type: this.tag,
+          limit: 20
         }
       }).then(res => {
         this.list = res.data.data
@@ -91,9 +92,17 @@ export default {
           id
         }
       }).then(res => {
-        console.log(res)
-        this.$parent.musicUrl = res.data.data[0].url
+        let url = res.data.data[0].url
+        if(url) {
+          this.$parent.musicUrl = url
+        }
+        else {
+          this.$message.warning('令儿没有找到播放源呢，换一首试试吧～')
+        }
       })
+    },
+    toMv(id) {
+      this.$router.push(`/mv?id=${id}`)
     }
   },
   created() {

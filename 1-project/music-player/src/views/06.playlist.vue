@@ -37,29 +37,32 @@
             <th>音乐标题</th>
             <th>歌手</th>
             <th>专辑</th>
-            <th>时长</th>
+            <th>发行时间</th>
           </thead>
           <tbody>
             <tr class="el-table__row" v-for="(item, index) in tracks" :key="index">
               <td>{{ index + 1 }}</td>
               <td>
                 <div class="img-wrap">
-                  <img src="../assets/songCover.jpg" alt="" />
-                  <span class="iconfont icon-play"></span>
+                  <img :src="item.al.picUrl" :alt="index" />
+                  <span class="iconfont icon-play" @click="play(item.id)"></span>
                 </div>
               </td>
               <td>
                 <div class="song-wrap">
                   <div class="name-wrap">
-                    <span>你要相信这不是最后一天</span>
-                    <span class="iconfont icon-mv"></span>
+                    <span>{{ item.name }}</span>
+                    <span 
+                      class="iconfont icon-mv" 
+                      v-if="item.mv != 0" 
+                      @click="toMv(item.mv)"
+                    ></span>
                   </div>
-                  <span>电视剧加油练习生插曲</span>
                 </div>
               </td>
-              <td>华晨宇</td>
-              <td>你要相信这不是最后一天</td>
-              <td>06:03</td>
+              <td>{{ item.ar[0].name }}</td>
+              <td>{{ item.al.name }}</td>
+              <td>{{ item.publishTime }}</td>
             </tr>
           </tbody>
         </table>
@@ -138,11 +141,17 @@ export default {
       activeIndex: '1',
       total: 0,
       page: 1,
-      playList: {},
       tracks: [],
       hotComment: [],
       hotCount: 0,
-      comment: []
+      comment: [],
+      playList: {
+        creator: {
+          avatarUrl: '',
+          nickname: ''
+        },
+        tags: []
+      }
     };
   },
   methods: {
@@ -175,6 +184,26 @@ export default {
           arr[index].time = `${year}-${month}-${day} ${hour}:${min}:${sec}`
         })
       })
+    },
+    toMv(id) {
+      this.$router.push(`/mv?id=${id}`)
+    },
+    play(id) {
+      axios({
+        url: `https://autumnfish.cn/song/url`,
+        method: 'get',
+        params: {
+          id
+        }
+      }).then(res => {
+        let url = res.data.data[0].url
+        if(url) {
+          this.$parent.musicUrl = url
+        }
+        else {
+          this.$message.warning('令儿没有找到播放源呢，换一首试试吧～')
+        }
+      })
     }
   },
   created() {
@@ -195,6 +224,20 @@ export default {
       day = (day < 10) ? `0${day}`: day
 
       this.playList.createTime = `${year}-${month}-${day}`
+      this.tracks.forEach((item, index, arr) => {
+        if(item.publishTime == 0) {
+          arr[index].publishTime = '未知'
+        }
+        else {
+          let date = new Date(item.publishTime),
+              year = date.getFullYear(),
+              month = date.getMonth() + 1,
+              day = date.getDate()
+          month = (month < 10) ? `0${month}`: month
+          day = (day < 10) ? `0${day}`: day 
+          arr[index].publishTime = `${year}-${month}-${day}`
+        }
+      })
     }),
     axios({
       url: 'https://autumnfish.cn/comment/hot',
