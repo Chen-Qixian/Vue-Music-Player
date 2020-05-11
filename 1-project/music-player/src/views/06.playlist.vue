@@ -79,8 +79,10 @@
                   <span class="comment">{{ item.content }}</span>
                 </div>
                 <div class="re-content" v-if="item.beReplied.length != 0">
-                  <span class="name">{{ item.beReplied[0].user.nickname }}：</span>
-                  <span class="comment">{{ item.beReplied[0].content }}</span>
+                  <span v-for="(it, idx) in item.beReplied" :key="idx">
+                    <span class="name">{{ it.user.nickname }}：</span>
+                    <span class="comment">{{ it.content }}</span>
+                  </span>
                 </div>
                 <div class="date">{{ item.time }}</div>
               </div>
@@ -101,8 +103,10 @@
                   <span class="comment">{{ item.content }}</span>
                 </div>
                 <div class="re-content" v-if="item.beReplied.length != 0">
-                  <span class="name">{{ item.beReplied[0].user.nickname }}：</span>
-                  <span class="comment">{{ item.beReplied[0].content }}</span>
+                  <span v-for="(it, idx) in item.beReplied" :key="idx">
+                    <span class="name">{{ it.user.nickname }}：</span>
+                    <span class="comment">{{ it.content }}</span>
+                  </span>
                 </div>
                 <div class="date">{{ item.time }}</div>
               </div>
@@ -185,7 +189,7 @@ export default {
       this.tracks = this.playList.tracks
       let date = new Date(this.playList.createTime),
           year = date.getFullYear(),
-          month = date.getMonth(),
+          month = date.getMonth() + 1,
           day = date.getDate()
       month = (month < 10) ? `0${month}`: month
       day = (day < 10) ? `0${day}`: day
@@ -206,7 +210,7 @@ export default {
       this.hotComment.forEach((item, index, arr) => {
         let date = new Date(item.time),
             year = date.getFullYear(),
-            month = date.getMonth(),
+            month = date.getMonth() + 1,
             day = date.getDate(),
             hour = date.getHours(),
             min = date.getMinutes(),
@@ -230,20 +234,20 @@ export default {
       this.total = res.data.total
       this.comment = res.data.comments
       this.comment.forEach((item, index, arr) => {
-      let date = new Date(item.time),
-          year = date.getFullYear(),
-          month = date.getMonth(),
-          day = date.getDate(),
-          hour = date.getHours(),
-          min = date.getMinutes(),
-          sec = date.getSeconds()
-      month = (month < 10) ? `0${month}`: month
-      day = (day < 10) ? `0${day}`: day
-      hour = (hour < 10) ? `0${hour}`: hour
-      min = (min < 10) ? `0${min}`: min
-      sec = (sec < 10) ? `0${sec}`: sec  
-      arr[index].time = `${year}-${month}-${day} ${hour}:${min}:${sec}`
-    })
+        let date = new Date(item.time),
+            year = date.getFullYear(),
+            month = date.getMonth() + 1,
+            day = date.getDate(),
+            hour = date.getHours(),
+            min = date.getMinutes(),
+            sec = date.getSeconds()
+        month = (month < 10) ? `0${month}`: month
+        day = (day < 10) ? `0${day}`: day
+        hour = (hour < 10) ? `0${hour}`: hour
+        min = (min < 10) ? `0${min}`: min
+        sec = (sec < 10) ? `0${sec}`: sec  
+        arr[index].time = `${year}-${month}-${day} ${hour}:${min}:${sec}`
+      })
     })
   }
 };

@@ -461,6 +461,15 @@ ol {
 
 .mv-container .mv-wrap .info-wrap .mv-info .title {
   font-size: 30px;
+  width: 700px;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.mv-container .mv-wrap .info-wrap .mv-info .title:hover {
+  word-wrap:break-word; 
+  word-break:break-all;
+  cursor: pointer;
 }
 
 .mv-container .mv-wrap .info-wrap .mv-info .desc {
@@ -708,11 +717,15 @@ ol {
 
 .mvs-container .mvs .items .item .info-wrap .name {
   font-size: 15px;
+  cursor: default;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .mvs-container .mvs .items .item .info-wrap .singer {
   font-size: 14px;
   color: #c5c5c5;
+  cursor: default;
 }
 
 .playlist-container {

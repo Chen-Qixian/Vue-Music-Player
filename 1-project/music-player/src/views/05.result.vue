@@ -83,7 +83,7 @@
       <el-tab-pane label="MV" name="mv">
         <div class="items mv">
           <div class="item" v-for="(item, index) in mvList" :key="index">
-            <div class="img-wrap">
+            <div class="img-wrap" @click="playMv(item.id)">
               <img :src="item.cover" :alt="index" />
               <span class="iconfont icon-play"></span>
               <div class="num-wrap">
@@ -234,6 +234,9 @@ export default {
     },
     toPlayList(id) {
       this.$router.push(`/playlist?id=${id}`)
+    },
+    playMv(id) {
+      this.$router.push(`/mv?id=${id}`)
     }
   },
   created() {
